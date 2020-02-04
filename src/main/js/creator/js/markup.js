@@ -1,3 +1,4 @@
+console.log("markup.js")
 define(
 		'tpl!numworxPCIplayer/creator/tpl/markup'
 		[]

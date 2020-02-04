@@ -4,24 +4,38 @@ define(
 		[],
 		function() {			
 			return function(object) { 
-				return'<div class="numworx">MARKUP.TPL</div>'
+				return'<div class="numworx">MARKUP.TPL ' + object.sco  + ' </div>'
 			}
 		}
 )
 
 define(
+	'numworxPCIplayer/creator/js/states',
+	[
+    'taoQtiItem/qtiCreator/widgets/states/factory',
+    'taoQtiItem/qtiCreator/widgets/interactions/blockInteraction/states/states',
+    // hier states.... zie https://hub.taotesting.com/articles/qti/qti-item-creator
+    ], function(factory, states){
+    //the mediaInteraction state bundle contains 2 custom states Question and Sleep
+    //the third argument of createBundle() enable us to exclude the answer, correct and map states from the inherited blockInteraction states bundle
+    return factory.createBundle(states, arguments, ['answer', 'correct', 'map']);
+});
+
+
+define(
 	'numworxPCIplayer/creator/js/Widget',	
 	[
     'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/Widget',
+    'numworxPCIplayer/creator/js/states'
 ], 
-function(Widget){
+function(Widget, states){
     'use strict';
 
     var InteractionWidget = Widget.clone();
 
     InteractionWidget.initCreator = function(){
 
-        //this.registerStates(states);
+        this.registerStates(states);
 
         Widget.initCreator.call(this);
 
@@ -96,6 +110,7 @@ define(
 			         * @returns {function} handlebar template
 			         */
 			        getMarkupData : function(pci, defaultData){
+			        	defaultData.sco = pci.properties.sco;
 			            return defaultData;
 			        }
 			}
