@@ -1,2 +1,38 @@
 {
+    "typeIdentifier": "numworxPCIplayer",
+    "label": "Numworx player",
+    "short": "Numworx",
+    "description": "${project.description}",
+    "version": "${project.version}-${tao.version}",
+    "author": "Wim van Velthoven",
+    "email": "w.p.g.vanvelthoven@uu.nl",
+    "tags": [
+        "math"
+    ],
+     "response": {
+        "baseType": "integer",
+        "cardinality": "single"
+    },
+   "runtime" : {
+        "hook" : "./runtime/js/pciplayer.js",
+        "stylesheets" : [
+            "./runtime/css/pciplayer.css"
+        ],
+        "mediaFiles" : [
+        ],
+        "src" : [
+            "./runtime/js/pciplayer.js",
+            "./runtime/js/renderer.js"
+        ]    },
+    "creator" : {
+        "icon": "./creator/img/numworx.svg",
+        "hook": "./pciCreator.js",
+        "src" : [
+            "./pciCreator.js",
+            "./creator/js/markup.js",
+            "./creator/widget/Widget.js"
+        ]
+        
+    }
+
 }
