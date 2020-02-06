@@ -88,7 +88,7 @@ define(
     	         */
     	        getResponse : function getResponse() {
 
-    	        	var value = 0 + this.api().GetValue("cmi.score.raw");
+    	        	var value = parseInt("0" + this.api().GetValue("cmi.score.raw"));
     	            return {'base' : {'integer' : value}};
     	        },
     	        /**
@@ -117,7 +117,8 @@ define(
     	         * @param {Object} serializedState - json format
     	         */
     	        setSerializedState : function(state) {
-    	        	this.api().SetValue("cmi.suspend_state", state);
+    	        	if (state['cmi.suspend_data'])
+    	        		this.api().SetValue("cmi.suspend_data", state['cmi.suspend_state']);
     	        },
 
     	        /**
@@ -128,7 +129,10 @@ define(
     	         * @returns {Object} json format
     	         */
     	        getSerializedState : function() {
-    	            return this.api().GetValue("cmi.suspend_state");
+    	            return {
+    	            	"cmi.suspend_data":
+    	            	this.api().GetValue("cmi.suspend_data")
+    	            }
     	        }
     	    };
 

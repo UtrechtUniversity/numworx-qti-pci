@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Inner HTML</title>
+<script type="text/javascript" src='https://app.dwo.nl/dwo/apps/deploy.jsp'></script>
+    <title>Numworx PCI player</title>
+    <script>css("DWOplayer.css")</script>
+    <script>script("scripts/SCORM_2004_APIWrapper.js")</script>
+    <script>script("DWOplayer/DWOplayer.nocache.js")</script>
 </head>
-<body>
-Inner html
-
-<script>
-	var result = parent.API_1484_11.Initialize("")
-	document.write(result) // expect true
-</script>
-	<p>
-	score = <script> document.write(parent.API_1484_11.GetValue("cmi.score.raw"))</script>
+<body id="main" style="overflow: hidden">
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
 </body>
 </html>
