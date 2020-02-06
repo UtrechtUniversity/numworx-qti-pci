@@ -4,10 +4,62 @@ define(
 		[],
 		function() {			
 			return function(object) { 
-				return'<div class="numworx">MARKUP.TPL ' + object.sco  + ' </div>'
+				// XHTML
+				return'<div class="numworxPCIplayer">Activity: <span class="prompt">' + object.sco  + '</span><br /><iframe></iframe></div>'
 			}
 		}
 )
+
+define(
+	    'numworxPCIplayer/creator/widget/states/Question',
+[
+    'taoQtiItem/qtiCreator/widgets/states/factory',
+    'taoQtiItem/qtiCreator/widgets/interactions/states/Question',
+    'taoQtiItem/qtiCreator/widgets/helpers/formElement',
+    'taoQtiItem/qtiCreator/editor/simpleContentEditableElement',
+    'taoQtiItem/qtiCreator/editor/containerEditor',
+    'lodash',
+    'jquery'
+], function(stateFactory, Question, formElement, simpleEditor, containerEditor,  _, $){
+    'use strict';
+
+    var InteractionStateQuestion = stateFactory.extend(Question, function(){
+
+        var $container = this.widget.$container,
+            $prompt = $container.find('.prompt'),
+            interaction = this.widget.element;
+
+        containerEditor.create($prompt, {
+            change : function(text){
+                interaction.data('prompt', text);
+                interaction.updateMarkup();
+            },
+            markup : interaction.markup,
+            markupSelector : '.prompt',
+            related : interaction,
+            areaBroker: this.widget.getAreaBroker()
+        });
+
+    }, function(){
+
+        var $container = this.widget.$container,
+            $prompt = $container.find('.prompt');
+
+        simpleEditor.destroy($container);
+        containerEditor.destroy($prompt);
+    });
+
+    InteractionStateQuestion.prototype.initForm = function(){
+
+    };
+
+    return InteractionStateQuestion;
+});
+
+
+
+
+
 
 define(
 	'numworxPCIplayer/creator/js/states',
@@ -15,6 +67,7 @@ define(
     'taoQtiItem/qtiCreator/widgets/states/factory',
     'taoQtiItem/qtiCreator/widgets/interactions/blockInteraction/states/states',
     // hier states.... zie https://hub.taotesting.com/articles/qti/qti-item-creator
+    'numworxPCIplayer/creator/widget/states/Question',
     ], function(factory, states){
     //the mediaInteraction state bundle contains 2 custom states Question and Sleep
     //the third argument of createBundle() enable us to exclude the answer, correct and map states from the inherited blockInteraction states bundle

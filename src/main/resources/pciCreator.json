@@ -19,6 +19,8 @@
             "./runtime/css/pciplayer.css"
         ],
         "mediaFiles" : [
+        	"./runtime/assets/inner.html",
+        	"./runtime/assets/outer.html"
         ],
         "src" : [
             "./runtime/js/pciplayer.js",

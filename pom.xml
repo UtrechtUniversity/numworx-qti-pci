@@ -9,6 +9,7 @@
   <properties>
     <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
     <tao.version>${maven.build.timestamp}</tao.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
   	<finalName>${project.artifactId}-${project.version}-${tao.version}</finalName>

@@ -1,8 +1,35 @@
+console.log("runtime")
+
+define(
+	'numworxPCIplayer/runtime/js/renderer',
+[
+    'IMSGlobal/jquery_2_1_1',
+], 
+function($){
+    'use strict';
+
+    return {
+    	render: function(id, dom, config, assetManager ) {
+    		var $dom = $(dom)
+    		var $element = $dom.find("iframe");
+    		$element.attr("src", assetManager.resolve("numworxPCIplayer/runtime/assets/outer.html"))
+    		return $element;
+    	}
+    }
+	}
+)
+
+
+
+
+
 // runtime hook
-define([
+define(
+	'numworxPCIplayer/runtime/js/pciplayer',		
+	[
     'qtiCustomInteractionContext',
-    'taoQtiItem/portableLib/jquery_2_1_1',
-    'taoQtiItem/portableLib/OAT/util/event',
+    'IMSGlobal/jquery_2_1_1',
+    'OAT/util/event',
     'numworxPCIplayer/runtime/js/renderer'
 ], 
 	function(qtiCustomInteractionContext, $, event, renderer) {
@@ -16,11 +43,30 @@ define([
     	        	this.id = id;
     	        	this.dom = dom;
     	        	this.config = config || {};
+    	        	this.state = {}
     	        	
     	            //add method on(), off() and trigger() to the current object
     	            event.addEventMgr(this);
-	        	
-    	            renderer.render( this.id, this.dom. this.config, assetManager) 
+    	            var self = this;
+    	            this.$iframe = renderer.render( this.id, this.dom, this.config, assetManager) 
+    	            this.$iframe.on("load", function() {
+    	            	console.log("iframe loaded");
+    	            })
+    	        
+    	        },
+    	        
+    	        api: function() {
+    	        	var a =  this.$iframe[0].contentWindow.API_1484_11
+    	        	if (a) return a;
+    	        	return this;
+    	        },
+    	        
+    	        SetValue: function(key, value) {
+    	        	this.state[key] = value;
+    	        },
+ 
+    	        GetValue: function(key) {
+    	        	return this.state[key] || "";
     	        },
     	        
     	        /**
@@ -42,7 +88,7 @@ define([
     	         */
     	        getResponse : function getResponse() {
 
-    	        	var value = 1;
+    	        	var value = 0 + this.api().GetValue("cmi.score.raw");
     	            return {'base' : {'integer' : value}};
     	        },
     	        /**
@@ -52,7 +98,7 @@ define([
     	         * @param {Object} interaction
     	         */
     	        resetResponse : function() {
-
+    	        		
     	        },
     	        /**
     	         * Reverse operation performed by render()
@@ -71,6 +117,7 @@ define([
     	         * @param {Object} serializedState - json format
     	         */
     	        setSerializedState : function(state) {
+    	        	this.api().SetValue("cmi.suspend_state", state);
     	        },
 
     	        /**
@@ -81,11 +128,16 @@ define([
     	         * @returns {Object} json format
     	         */
     	        getSerializedState : function() {
-    	            return {};
+    	            return this.api().GetValue("cmi.suspend_state");
     	        }
     	    };
 
     	    qtiCustomInteractionContext.register(numworxPCIplayer);
     	    return numworxPCIplayer;
     	}
+)	
+
+define(
+		['numworxPCIplayer/runtime/js/pciplayer'],
+		function(PCI) {return PCI}
 )
