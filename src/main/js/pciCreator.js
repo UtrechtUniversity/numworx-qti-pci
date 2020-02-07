@@ -5,7 +5,7 @@ define(
 		function() {			
 			return function(object) { 
 				// XHTML
-				return'<div class="numworxPCIplayer">Activity: <span class="prompt">' + object.sco  + '</span><br /><iframe></iframe></div>'
+				return `<div class="numworxPCIplayer"><div>Activity: <span class="prompt">${object.sco}</span></div><iframe width='${object.width}' height='${object.height}'></iframe></div>`
 			}
 		}
 )
@@ -43,13 +43,70 @@ define(
     }, function(){
 
         var $container = this.widget.$container,
-            $prompt = $container.find('.prompt');
+        	interaction = this.widget.element,
+            $prompt = $container.find('.prompt'),
+            $iframe = $container.find('iframe');
+           
 
         simpleEditor.destroy($container);
         containerEditor.destroy($prompt);
+        interaction.updateMarkup();
+        $iframe.attr("width", interaction.prop('width'))
+		$iframe.attr("height", interaction.prop('height'))
     });
 
     InteractionStateQuestion.prototype.initForm = function(){
+
+    	function formTpl(o) {
+    		return `<p><label>Width: <input name='width' value='${o.width}' ><label></p>` +
+    		`<p><label>Height: <input name='height' value='${o.height}' ><label></p>` +
+    		`<p><label>Activity: <input name='width' value='${o.sco}' ><label></p>`;
+    		
+    	}
+    	
+    	
+    	
+    	var _widget = this.widget,
+        $form = _widget.$form,
+        interaction = _widget.element,
+        response = interaction.getResponseDeclaration(),
+        width = parseInt(interaction.prop('width')) || 800,
+        height = parseInt(interaction.prop('height')) || 400,
+        sco    = parseInt(interaction.prop( 'sco')) || "";
+//render the form using the form template
+        $form.html(formTpl({ 'width':width, 'height':height, 'sco':sco}));
+//init form javascript
+        formElement.initWidget($form);
+
+        //init data change callbacks
+        formElement.setChangeCallbacks($form, interaction, {
+            width : function(interaction, value) {
+
+                //update the pci property value:
+                interaction.prop('width', value);
+
+                //trigger change event:
+                interaction.triggerPci('widthchange', [parseInt(value)]);
+            },
+            height : function(interaction, value) {
+
+                //update the pci property value:
+                interaction.prop('height', value);
+
+                //trigger change event:
+                interaction.triggerPci('heightchange', [parseInt(value)]);
+            },
+            sco : function(interaction, value) {
+
+                //update the pci property value:
+                interaction.prop('width', value);
+
+                //trigger change event:
+                interaction.triggerPci('scochange', [parseInt(value)]);
+            }
+
+            
+        });
 
     };
 
@@ -109,8 +166,7 @@ define(
 		function(Widget, markupTpl) {
 		'use strict';
 	    var _typeIdentifier = 'numworxPCIplayer';
-	    console.log("pciCREATOR AMD");
-			var numworxPciPlayer = {
+		var numworxPciPlayer = {
 			        /**
 			         * (required) Get the typeIdentifier of the custom interaction
 			         *
@@ -136,7 +192,9 @@ define(
 			         */
 			        getDefaultProperties : function(pci){
 			            return {
-			            	'sco': 12356
+			            	'sco': 386510,
+			            	'width': 800,
+			            	'height': 400
 			            };
 			        },
 			        /**
@@ -163,7 +221,9 @@ define(
 			         * @returns {function} handlebar template
 			         */
 			        getMarkupData : function(pci, defaultData){
-			        	defaultData.sco = pci.properties.sco;
+			        	defaultData.sco = pci.prop('sco')
+			        	defaultData.height = pci.prop('height')
+			        	defaultData.width = pci.prop('width')
 			            return defaultData;
 			        }
 			}

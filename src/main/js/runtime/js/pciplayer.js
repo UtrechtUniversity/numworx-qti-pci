@@ -12,7 +12,9 @@ function($){
     	render: function(id, dom, config, assetManager ) {
     		var $dom = $(dom)
     		var $element = $dom.find("iframe");
-    		$element.attr("src", assetManager.resolve("numworxPCIplayer/runtime/assets/outer.html"))
+    		$element.attr("src", assetManager.resolve("numworxPCIplayer/runtime/assets/outer.html?s="+config.sco))
+    		$element.attr("width", config.width)
+    		$element.attr("height", config.height)
     		return $element;
     	}
     }
