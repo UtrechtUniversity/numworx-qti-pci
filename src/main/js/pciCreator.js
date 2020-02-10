@@ -5,7 +5,7 @@ define(
 		function() {			
 			return function(object) { 
 				// XHTML
-				return `<div class="numworxPCIplayer"><div>Activity: <span class="prompt">${object.sco}</span></div><iframe width='${object.width}' height='${object.height}'></iframe></div>`
+				return `<div class="numworxPCIplayer"><iframe width='${object.width}' height='${object.height}'></iframe></div>`
 			}
 		}
 )
@@ -26,30 +26,17 @@ define(
     var InteractionStateQuestion = stateFactory.extend(Question, function(){
 
         var $container = this.widget.$container,
-            $prompt = $container.find('.prompt'),
             interaction = this.widget.element;
 
-        containerEditor.create($prompt, {
-            change : function(text){
-                interaction.data('prompt', text);
-                interaction.updateMarkup();
-            },
-            markup : interaction.markup,
-            markupSelector : '.prompt',
-            related : interaction,
-            areaBroker: this.widget.getAreaBroker()
-        });
 
     }, function(){
 
         var $container = this.widget.$container,
         	interaction = this.widget.element,
-            $prompt = $container.find('.prompt'),
             $iframe = $container.find('iframe');
            
 
         simpleEditor.destroy($container);
-        containerEditor.destroy($prompt);
         interaction.updateMarkup();
         $iframe.attr("width", interaction.prop('width'))
 		$iframe.attr("height", interaction.prop('height'))
@@ -60,11 +47,8 @@ define(
     	function formTpl(o) {
     		return `<p><label>Width: <input name='width' value='${o.width}' ><label></p>` +
     		`<p><label>Height: <input name='height' value='${o.height}' ><label></p>` +
-    		`<p><label>Activity: <input name='width' value='${o.sco}' ><label></p>`;
-    		
+    		`<p><label>Activity: <input name='sco' value='${o.sco}' ><label></p>`;   		
     	}
-    	
-    	
     	
     	var _widget = this.widget,
         $form = _widget.$form,
@@ -99,13 +83,12 @@ define(
             sco : function(interaction, value) {
 
                 //update the pci property value:
-                interaction.prop('width', value);
+                interaction.prop('sco', value);
 
                 //trigger change event:
                 interaction.triggerPci('scochange', [parseInt(value)]);
             }
 
-            
         });
 
     };
