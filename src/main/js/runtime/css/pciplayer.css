@@ -1,4 +1,9 @@
 .qti-customInteraction
 div.numworxPCIplayer {
 	background-color: wheat;
+	position: relative;
+	padding: 2px;
+}
+
+div.numworxPCIplayer iframe {
 }

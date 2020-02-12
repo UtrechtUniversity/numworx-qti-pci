@@ -20,7 +20,10 @@
         ],
         "mediaFiles" : [
         	"./runtime/assets/inner.html",
-        	"./runtime/assets/outer.html"
+        	"./runtime/assets/outer.html",
+        	"./runtime/assets/NabouwenAanzichtenGWT.html",
+        	
+        	"./runtime/assets/deploy.jsp"
         ],
         "src" : [
             "./runtime/js/pciplayer.js",

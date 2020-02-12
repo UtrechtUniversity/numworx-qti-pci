@@ -1,4 +1,3 @@
-console.log("pcicreator.js")
 define(
 		'numworxPCIplayer/creator/js/markup',
 		[],

@@ -53,6 +53,7 @@ define(
     	            this.$iframe = renderer.render( this.id, this.dom, this.config, assetManager) 
     	            this.$iframe.on("load", function() {
     	            	console.log("iframe loaded");
+    	            	self.api().SetValues(self.state);
     	            })
     	        
     	        },
