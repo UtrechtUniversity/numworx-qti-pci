@@ -32,7 +32,9 @@ body {
 				return "true";
 			},
 			SetValues: function(object) {
-				
+				for (key in object) {
+					this.SetValue(key, object[key]);
+				}
 			}
 	}
 	

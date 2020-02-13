@@ -21,22 +21,45 @@
         "mediaFiles" : [
         	"./runtime/assets/inner.html",
         	"./runtime/assets/outer.html",
+        	"./runtime/assets/AlgebraExprGWT.html",
+        	"./runtime/assets/AlgebraPijlenGWT.html",
+        	"./runtime/assets/BalansFruitGWT.html",
+        	"./runtime/assets/BinomVerdGWT.html",
+        	"./runtime/assets/CalculatorGWT.html",
+        	"./runtime/assets/DoorzienGWT.html",
+        	"./runtime/assets/DraaibankGWT.html",
+        	"./runtime/assets/GeoDefinerGWT.html",
+        	"./runtime/assets/GeoGebra.html",
+        	"./runtime/assets/GeomAlgGWT.html",
+        	"./runtime/assets/Grafiek3DGWT.html",
+        	"./runtime/assets/HeksGWT.html",
+        	"./runtime/assets/IVMDrawGWT.html",
+        	"./runtime/assets/KansbomenGWT.html",
+        	"./runtime/assets/KladjeGWT.html",
+        	"./runtime/assets/MozarchGWT.html",
         	"./runtime/assets/NabouwenAanzichtenGWT.html",
-        	
+        	"./runtime/assets/NormVerdGWT.html",
+       		"./runtime/assets/SliderWidgetGWT.html",      	
+        	"./runtime/assets/StatistiekGWT.html",
+        	"./runtime/assets/StatSimGWT.html",
+        	"./runtime/assets/StroomDiagrammenGWT.html",
+        	"./runtime/assets/TegelsLeggenGWT.html",
+        	"./runtime/assets/TekenVeelvlakGWT.html",
+        	"./runtime/assets/VerknippenGWT.html",
+        	"./runtime/assets/WebLogo3dGWT.html",
+        	"./runtime/assets/WebLogoGWT.html",    	
         	"./runtime/assets/deploy.jsp"
         ],
         "src" : [
-            "./runtime/js/pciplayer.js",
-            "./runtime/js/renderer.js"
-        ]    },
+            "./runtime/js/pciplayer.js"
+        ]
+    },
     "creator" : {
         "icon": "./creator/img/numworx.svg",
         "hook": "./pciCreator.js",
         "src" : [
-            "./pciCreator.js",
-            "./creator/js/markup.js",
-            "./creator/widget/Widget.js"
-        ]
+            "./pciCreator.js"
+         ]
         
     }
 
