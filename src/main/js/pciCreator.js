@@ -10,6 +10,36 @@ define(
 )
 
 define(
+	'numworxPCIplayer/creator/widget/states/Correct',
+
+[
+    'taoQtiItem/qtiCreator/widgets/states/factory',
+    'taoQtiItem/qtiCreator/widgets/states/Correct',
+    'lodash'
+], function(stateFactory, Correct, _){
+
+    var InteractionStateCorrect = stateFactory.create(Correct, function(){
+    
+        var widget = this.widget;
+        var interaction = widget.element;
+        var responseDeclaration = interaction.getResponseDeclaration();
+                
+// set initial and only correct response: 100
+        var correctResponse = [];    
+        correctResponse.push(100);
+        responseDeclaration.setCorrect(correctResponse);
+
+    }, function(){
+        var widget = this.widget;
+        var interaction = widget.element;
+        
+    });
+    return InteractionStateCorrect;
+	});
+
+
+
+define(
 	    'numworxPCIplayer/creator/widget/states/Question',
 [
     'taoQtiItem/qtiCreator/widgets/states/factory',
@@ -97,6 +127,25 @@ define(
 });
 
 
+define(
+	'numworxPCIplayer/creator/widget/states/Answer',
+[
+    'taoQtiItem/qtiCreator/widgets/states/factory',
+    'taoQtiItem/qtiCreator/widgets/interactions/states/Answer',
+    'taoQtiItem/qtiCreator/widgets/interactions/helpers/answerState'
+], function(stateFactory, Answer, answerStateHelper){
+
+    var InteractionStateAnswer = stateFactory.extend(Answer, function(){
+        
+        //forward to one of the available sub state, according to the response processing template
+        answerStateHelper.forward(this.widget);
+        
+    }, function(){
+        
+    });
+    
+    return InteractionStateAnswer;
+});
 
 
 
@@ -108,10 +157,12 @@ define(
     'taoQtiItem/qtiCreator/widgets/interactions/blockInteraction/states/states',
     // hier states.... zie https://hub.taotesting.com/articles/qti/qti-item-creator
     'numworxPCIplayer/creator/widget/states/Question',
+    'numworxPCIplayer/creator/widget/states/Answer',
+    'numworxPCIplayer/creator/widget/states/Correct',
     ], function(factory, states){
     //the mediaInteraction state bundle contains 2 custom states Question and Sleep
     //the third argument of createBundle() enable us to exclude the answer, correct and map states from the inherited blockInteraction states bundle
-    return factory.createBundle(states, arguments, ['answer', 'correct', 'map']);
+    return factory.createBundle(states, arguments, ['map']);
 });
 
 
@@ -132,9 +183,18 @@ function(Widget, states){
 
         Widget.initCreator.call(this);
 
-        //for existing likert scale PCI, ensure that the rp template is always NONE
-        this.element.getResponseDeclaration().setTemplate('NONE');
-    
+        var $container = this.$container,
+        $iframe = $container.find('iframe');
+        $iframe.addClass('sleep');
+
+        var interaction = this.element;
+        var responseDeclaration = interaction.getResponseDeclaration();
+        if (! responseDeclaration.getCorrect()) {       
+// set initial and only correct response: 100, only if not set already.
+        	var correctResponse = [];    
+        	correctResponse.push(100);
+        	responseDeclaration.setCorrect(correctResponse);
+        }
     };
     
     return InteractionWidget;
@@ -188,8 +248,6 @@ define(
 			         * @returns {Object}
 			         */
 			        afterCreate : function(pci){
-			            //always set the NONE response processing mode
-			            pci.getResponseDeclaration().setTemplate('NONE');
 			        },
 			        /**
 			         * (required) Gives the qti pci xml template
