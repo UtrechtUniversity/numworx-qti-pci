@@ -25,7 +25,9 @@ define(
     var InteractionStateQuestion = stateFactory.extend(Question, function(){
 
         var $container = this.widget.$container,
-            interaction = this.widget.element;
+            interaction = this.widget.element,
+            $iframe = $container.find('iframe');
+        $iframe.addClass('sleep');
 
 
     }, function(){
@@ -34,7 +36,6 @@ define(
         	interaction = this.widget.element,
             $iframe = $container.find('iframe');
            
-
         simpleEditor.destroy($container);
         interaction.updateMarkup();
         $iframe.attr("width", interaction.prop('width'))
@@ -133,6 +134,7 @@ function(Widget, states){
 
         //for existing likert scale PCI, ensure that the rp template is always NONE
         this.element.getResponseDeclaration().setTemplate('NONE');
+    
     };
     
     return InteractionWidget;
@@ -174,8 +176,8 @@ define(
 			         */
 			        getDefaultProperties : function(pci){
 			            return {
-			            	'sco': 386510,
-			            	'width': 800,
+			            	'sco': 674042,
+			            	'width': 400,
 			            	'height': 400
 			            };
 			        },

@@ -6,4 +6,9 @@ div.numworxPCIplayer {
 }
 
 div.numworxPCIplayer iframe {
+	width: 100%;
+}
+
+div.numworxPCIplayer iframe.sleep {
+	pointer-events: none;
 }
