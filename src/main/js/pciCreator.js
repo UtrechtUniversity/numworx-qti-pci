@@ -75,7 +75,8 @@ define(
     InteractionStateQuestion.prototype.initForm = function(){
 
     	function formTpl(o) {
-    		return `<p><label>Width: <input name='width' value='${o.width}' ><label></p>` +
+    		return `<p>`+
+//    		`<label>Width: <input name='width' value='${o.width}' ><label></p>` +
     		`<p><label>Height: <input name='height' value='${o.height}' ><label></p>` +
     		`<p><label>Activity: <input name='sco' value='${o.sco}' ><label></p>`;   		
     	}
