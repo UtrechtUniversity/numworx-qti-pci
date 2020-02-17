@@ -143,7 +143,12 @@ define(
     }, function(){
         
     });
-    
+
+    InteractionStateAnswer.prototype.initResponseForm = function() {
+        answerStateHelper.initResponseForm(this.widget, {
+            rpTemplates: ["CUSTOM", 'MATCH_CORRECT', "NONE"]
+        })
+    }   
     return InteractionStateAnswer;
 });
 

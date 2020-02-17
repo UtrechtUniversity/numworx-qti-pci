@@ -57,7 +57,7 @@ body {
 			    console.log(`Done, got ${xhr.response.length} bytes`); // responseText is the server
 				API_1484_11.SetValue("cmi.launch_data", xhr.response);
 				var element = document.getElementsByTagName("iframe")[0];
-				element.setAttribute("src", "inner.html?locale=en#cmi.launch_data:"+sco);
+				element.setAttribute("src", "inner.html?responsive=true&locale=en#cmi.launch_data:"+sco);
 		  }
 			};		
 	}
@@ -70,7 +70,6 @@ body {
 
 </head>
 <body onload ="load()">
-	<iframe src="" class='innerframe'>
-	</iframe>
+<iframe src="" class='innerframe'></iframe>
 </body>
 </html>
