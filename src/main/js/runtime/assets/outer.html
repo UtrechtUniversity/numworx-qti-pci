@@ -20,6 +20,12 @@ body {
 
 </style>
 <script type="text/javascript">
+
+	var deploy = "//cdn.dwo.nl/apps/"
+	var casServer = "https://app.dwo.nl/ideas/IdeasServlet"
+	var css = "https://app.dwo.nl/dwo/rest/public/scoData/get/674042/style.css"
+	var locale = "en"
+
 	var API_1484_11 = {
 			state: { },
 			Initialize: function(dummy) { return "true"},
@@ -42,7 +48,7 @@ body {
 	API_1484_11.SetValue("cmi.score.raw", "0")
 
 	function launch_data(sco) {
-		var url = "https://app.dwo.nl/dwo/rest/public/scoData/getJSONLaunchDataBytes?scoId="+sco
+		var url = sco
 // 1. Create a new XMLHttpRequest object
 		var xhr = new XMLHttpRequest();
 // 2. Configure it: GET-request for the URL
@@ -57,13 +63,19 @@ body {
 			    console.log(`Done, got ${xhr.response.length} bytes`); // responseText is the server
 				API_1484_11.SetValue("cmi.launch_data", xhr.response);
 				var element = document.getElementsByTagName("iframe")[0];
-				element.setAttribute("src", "inner.html?responsive=true&locale=en#cmi.launch_data:"+sco);
+				element.setAttribute("src", "inner.html?responsive=true&locale="+locale+"#cmi.launch_data:00000000");
 		  }
 			};		
 	}
 		
 	function load() {
 		var sco = location.search.substring(3);
+		var i = sco.indexOf("&");
+		if (i > 0) sco = sco.substring(i)
+		// css = 
+	    // casServer = 
+		// deploy = 
+		
 		launch_data(sco)
 	}
 </script>

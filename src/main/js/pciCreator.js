@@ -75,21 +75,35 @@ define(
     InteractionStateQuestion.prototype.initForm = function(){
 
     	function formTpl(o) {
-    		return `<p>`+
+    		return "<div>" +
 //    		`<label>Width: <input name='width' value='${o.width}' ><label></p>` +
     		`<p><label>Height: <input name='height' value='${o.height}' ><label></p>` +
-    		`<p><label>Activity: <input name='sco' value='${o.sco}' ><label></p>`;   		
+    		`<p><label>Activity: <input name='sco' value='${o.sco}' ><label></p>` +
+    		`<p><label>Style: <input name='css' value='${o.css}' ><label></p>` +
+    		`<p><label>Engine: <input name='engine' value='${o.engine}' ><label></p>` +
+    		`<p><label>CAS: <input name='cas' value='${o.cas}' ><label></p>` +
+    		`<p><label>Locale: <input name='locale' value='${o.locale}' ><label></p>` +
+    		"</div>"
+    		;   		
     	}
     	
     	var _widget = this.widget,
-        $form = _widget.$form,
-        interaction = _widget.element,
-        response = interaction.getResponseDeclaration(),
-        width = parseInt(interaction.prop('width')) || 800,
-        height = parseInt(interaction.prop('height')) || 400,
-        sco    = parseInt(interaction.prop( 'sco')) || "";
+        	$form = _widget.$form,
+        	interaction = _widget.element,
+        	response = interaction.getResponseDeclaration(),
+        	width = parseInt(interaction.prop('width')) || 800,
+        	height = parseInt(interaction.prop('height')) || 400,
+        	locale = interaction.prop('locale')|| "en",
+        	sco    = interaction.prop('sco') || "",
+        	css    = interaction.prop('css') || "",
+        	engine = interaction.prop('engine') || "//cdn.dwo.nl/apps/",
+        	cas    = interaction.prop('cas') || "https://app.dwo.nl/ideas/IdeasServlet";
+    	
+    	
+    	
 //render the form using the form template
-        $form.html(formTpl({ 'width':width, 'height':height, 'sco':sco}));
+        $form.html(formTpl({ 'width':width, 'height':height, 'sco':sco,
+        					 'css': css, 'engine': engine, 'cas':cas }));
 //init form javascript
         formElement.initWidget($form);
 
@@ -117,7 +131,39 @@ define(
                 interaction.prop('sco', value);
 
                 //trigger change event:
-                interaction.triggerPci('scochange', [parseInt(value)]);
+                interaction.triggerPci('scochange', [value]);
+            },
+            engine : function(interaction, value) {
+
+                //update the pci property value:
+                interaction.prop('engine', value);
+
+                //trigger change event:
+                interaction.triggerPci('enginechange', [value]);
+            },
+            css : function(interaction, value) {
+
+                //update the pci property value:
+                interaction.prop('css', value);
+
+                //trigger change event:
+                interaction.triggerPci('csschange', [value]);
+            },
+            cas : function(interaction, value) {
+
+                //update the pci property value:
+                interaction.prop('cas', value);
+
+                //trigger change event:
+                interaction.triggerPci('caschange', [value]);
+            },
+            locale : function(interaction, value) {
+
+                //update the pci property value:
+                interaction.prop('locale', value);
+
+                //trigger change event:
+                interaction.triggerPci('localechange', [value]);
             }
 
         });
@@ -240,11 +286,14 @@ define(
 			         *
 			         * @returns {Object}
 			         */
-			        getDefaultProperties : function(pci){
+			        getDefaultProperties : function(pci) {
 			            return {
-			            	'sco': 674042,
+			            	'sco': "https://app.dwo.nl/dwo/rest/public/scoData/getJSONLaunchDataBytes?scoId=674042",
 			            	'width': 400,
-			            	'height': 400
+			            	'height': 400,
+			            	'cas': "https://app.dwo.nl/ideas/IdeasServlet",
+			            	'css': "https://app.dwo.nl/dwo/rest/public/scoData/get/674042/style.css",
+			            	'engine': "//cdn.dwo.nl/apps/"
 			            };
 			        },
 			        /**

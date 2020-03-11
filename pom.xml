@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nl.numworx.pciplayer</groupId>
   <artifactId>numworxPCIplayer</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Numworx PCI player</name>
   <description>player for TAO PCI</description>
@@ -47,10 +47,18 @@
           		</execution>
         	</executions>  		
   		</plugin>
+   			<plugin>
+            	<groupId>external.atlassian.jgitflow</groupId>
+            	<artifactId>jgitflow-maven-plugin</artifactId>
+            	<version>1.0-m5.1</version>
+        	</plugin>
   	</plugins>
   </build>
   <organization>
   	<name>Numworx</name>
   	<url>http://www.numworx.nl/</url>
   </organization>
+  <scm>
+  	<developerConnection>scm:git:git@git.science.uu.nl:dwoproject/DWO-LMS/pciplayer.git</developerConnection>
+  </scm>
 </project>
