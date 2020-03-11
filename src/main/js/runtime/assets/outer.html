@@ -80,9 +80,30 @@ body {
 			if (i > 0) e = e.substring(0,i)
 			deploy = e;
 		}
-		// css = 
-	    // casServer = 
-		
+// css = c
+		i = location.search.indexOf("&c=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i > 0) e = e.substring(0,i)
+			css = e;
+		}
+// casServer = m
+		i = location.search.indexOf("&m=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i > 0) e = e.substring(0,i)
+			casServer = e;
+		}
+// locale  = l 
+		i = location.search.indexOf("&l=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i > 0) e = e.substring(0,i)
+			locale = e;
+		}		
 		launch_data(sco)
 	}
 </script>
