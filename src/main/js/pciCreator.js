@@ -103,7 +103,7 @@ define(
     	
 //render the form using the form template
         $form.html(formTpl({ 'width':width, 'height':height, 'sco':sco,
-        					 'css': css, 'engine': engine, 'cas':cas }));
+        					 'css': css, 'engine': engine, 'cas':cas, 'locale': locale}));
 //init form javascript
         formElement.initWidget($form);
 
@@ -293,7 +293,8 @@ define(
 			            	'height': 400,
 			            	'cas': "https://app.dwo.nl/ideas/IdeasServlet",
 			            	'css': "https://app.dwo.nl/dwo/rest/public/scoData/get/674042/style.css",
-			            	'engine': "//cdn.dwo.nl/apps/"
+			            	'engine': "//cdn.dwo.nl/apps/",
+			            	'locale': 'en'
 			            };
 			        },
 			        /**
@@ -321,6 +322,10 @@ define(
 			        	defaultData.sco = pci.prop('sco')
 			        	defaultData.height = pci.prop('height')
 			        	defaultData.width = pci.prop('width')
+			        	defaultData.locale = pci.prop('locale')
+			        	defaultData.engine = pci.prop('engine')
+			        	defaultData.cas = pci.prop('cas')
+			        	defaultData.css = pci.prop('css')
 			            return defaultData;
 			        }
 			}

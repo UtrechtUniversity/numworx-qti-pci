@@ -71,10 +71,17 @@ body {
 	function load() {
 		var sco = location.search.substring(3);
 		var i = sco.indexOf("&");
-		if (i > 0) sco = sco.substring(i)
+		if (i > 0) sco = sco.substring(0,i)
+// engine
+		i = location.search.indexOf("&e=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i > 0) e = e.substring(0,i)
+			deploy = e;
+		}
 		// css = 
 	    // casServer = 
-		// deploy = 
 		
 		launch_data(sco)
 	}
