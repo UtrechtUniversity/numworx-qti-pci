@@ -19,4 +19,35 @@
   		<artifactId>DWO-commons-lib</artifactId>
   	</dependency>
   </dependencies>
+  <build>
+    <finalName>${artifactId}</finalName>
+    <plugins>
+      <plugin>
+      	<artifactId>maven-dependency-plugin</artifactId>
+      	<executions>
+      		<execution>
+      			<goals>
+      				<goal>copy-dependencies</goal>
+      			</goals>
+      			<phase>package</phase>
+      		</execution>
+      	</executions>
+      </plugin>
+      <plugin>
+      	<artifactId>maven-jar-plugin</artifactId>
+      	<version>2.4</version>
+      	<configuration>
+         <archive>
+         	<manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>nl.numworx.taoexport.TaoExport</mainClass>
+              <classpathPrefix>dependency/</classpathPrefix>
+            </manifest>
+          </archive>
+      	</configuration>
+      </plugin>
+    
+    </plugins>
+  </build>
 </project>

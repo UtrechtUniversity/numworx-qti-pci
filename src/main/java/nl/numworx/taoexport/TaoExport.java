@@ -41,8 +41,8 @@ public class TaoExport {
 
     Long courseId = 203030L;
     Long profileId = 106L;
-    String file = "numworx-items.zip";
-
+    String file = "target/numworx-items.zip";
+    if (args.length > 0) file = args[0];
     URL server = new URL("https://app.dwo.nl/dwo/");
     RestAuthenticator auth = StoredRestManager.getInstance().getAuthenticator();
     auth.setServerUrlPath(server);
