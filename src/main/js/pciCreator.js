@@ -93,10 +93,10 @@ define(
         	response = interaction.getResponseDeclaration(),
         	width = parseInt(interaction.prop('width')) || 800,
         	height = parseInt(interaction.prop('height')) || 400,
-        	locale = interaction.prop('locale')|| "en",
+        	locale = interaction.prop('locale')|| "fr",
         	sco    = interaction.prop('sco') || "",
         	css    = interaction.prop('css') || "",
-        	engine = interaction.prop('engine') || "//cdn.dwo.nl/apps/",
+        	engine = interaction.prop('engine') || "https://cdn.dwo.nl/apps/",
         	cas    = interaction.prop('cas') || "https://app.dwo.nl/ideas/IdeasServlet";
     	
     	
@@ -293,8 +293,8 @@ define(
 			            	'height': 400,
 			            	'cas': "https://app.dwo.nl/ideas/IdeasServlet",
 			            	'css': "https://app.dwo.nl/dwo/rest/public/scoData/get/674042/style.css",
-			            	'engine': "//cdn.dwo.nl/apps/",
-			            	'locale': 'en'
+			            	'engine': "https://cdn.dwo.nl/apps/",
+			            	'locale': 'fr'
 			            };
 			        },
 			        /**
