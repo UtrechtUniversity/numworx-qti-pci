@@ -20,7 +20,7 @@
   	</dependency>
   </dependencies>
   <build>
-    <finalName>${artifactId}</finalName>
+    <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
       	<artifactId>maven-dependency-plugin</artifactId>
@@ -38,7 +38,6 @@
       	<version>2.4</version>
       	<configuration>
          <archive>
-         	<manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
             <manifest>
               <addClasspath>true</addClasspath>
               <mainClass>nl.numworx.taoexport.TaoExport</mainClass>
