@@ -42,6 +42,7 @@
               <addClasspath>true</addClasspath>
               <mainClass>nl.numworx.taoexport.TaoExport</mainClass>
               <classpathPrefix>dependency/</classpathPrefix>
+              <useUniqueVersions>false</useUniqueVersions>
             </manifest>
           </archive>
       	</configuration>
