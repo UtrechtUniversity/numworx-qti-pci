@@ -7,7 +7,7 @@
 	</parent>
   <groupId>nl.numworx.pciplayer</groupId>
   <artifactId>numworxPCIplayer</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Numworx PCI player</name>
   <description>player for TAO PCI</description>
