@@ -50,7 +50,7 @@
         	"./runtime/assets/VerknippenGWT.html",
         	"./runtime/assets/WebLogo3dGWT.html",
         	"./runtime/assets/WebLogoGWT.html",    	
-        	"./runtime/assets/deploy.jsp"
+        	"./runtime/assets/deploy.js"
         ],
         "src" : [
             "./runtime/js/pciplayer.js"

@@ -2,7 +2,8 @@
  * script en css loader
  */
 
-var deploy = "//cdn.dwo.nl/apps/"
+var deploy = window.parent.deploy
+var casServer = window.parent.casServer
 var dwo_env = "app"
 
 function script(name) {
