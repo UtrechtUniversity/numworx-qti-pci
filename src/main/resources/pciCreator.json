@@ -15,6 +15,10 @@
     },
    "runtime" : {
         "hook" : "./runtime/js/pciplayer.js",
+        "libraries" : [
+            "IMSGlobal/jquery_2_1_1",
+            "./runtime/js/renderer.js"
+        ],
         "stylesheets" : [
             "./runtime/css/pciplayer.css"
         ],
@@ -51,18 +55,20 @@
         	"./runtime/assets/WebLogo3dGWT.html",
         	"./runtime/assets/WebLogoGWT.html",    	
         	"./runtime/assets/deploy.js"
-        ],
-        "src" : [
-            "./runtime/js/pciplayer.js"
         ]
-    },
+   	},
     "creator" : {
         "icon": "./creator/img/numworx.svg",
         "hook": "./pciCreator.js",
-        "src" : [
-            "./pciCreator.js"
-         ]
+        "libraries": [
+        	"./creator/js/markup.js",
+        	"./creator/js/states.js",
+        	"./creator/js/Widget.js",
+        	"./creator/widget/states/Answer.js",
+        	"./creator/widget/states/Correct.js",
+            "./creator/widget/states/Question.js"      
+        ]
         
-    }
+  	}
 
 }
