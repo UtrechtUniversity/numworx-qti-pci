@@ -1,6 +1,5 @@
 // runtime hook
 define(
-	'numworxPCIplayer/runtime/js/pciplayer',		
 	[
     'qtiCustomInteractionContext',
     'IMSGlobal/jquery_2_1_1',

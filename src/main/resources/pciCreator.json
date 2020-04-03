@@ -3,7 +3,7 @@
     "label": "Numworx player",
     "short": "Numworx",
     "description": "${project.description}",
-    "version": "${project.version}-${tao.version}",
+    "version": "${version.majorVersion}.${version.minorVersion}.${version.incrementalVersion}-${tao.version}",
     "author": "Wim van Velthoven",
     "email": "w.p.g.vanvelthoven@uu.nl",
     "tags": [

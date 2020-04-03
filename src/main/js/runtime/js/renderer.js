@@ -1,5 +1,4 @@
 define(
-	'numworxPCIplayer/runtime/js/renderer',
 [
     'IMSGlobal/jquery_2_1_1',
 ], 
