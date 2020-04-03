@@ -1,5 +1,4 @@
 define(
-		'numworxPCIplayer/creator/js/markup',
 		[],
 		function() {			
 			return function(object) { 

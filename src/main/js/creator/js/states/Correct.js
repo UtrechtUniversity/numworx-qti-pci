@@ -1,6 +1,4 @@
 define(
-	'numworxPCIplayer/creator/widget/states/Correct',
-
 [
     'taoQtiItem/qtiCreator/widgets/states/factory',
     'taoQtiItem/qtiCreator/widgets/states/Correct',

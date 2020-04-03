@@ -1,5 +1,4 @@
 define(
-	'numworxPCIplayer/creator/js/Widget',	
 	[
     'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/Widget',
     'numworxPCIplayer/creator/js/states'

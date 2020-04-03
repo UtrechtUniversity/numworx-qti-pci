@@ -16,7 +16,6 @@
    "runtime" : {
         "hook" : "./runtime/js/pciplayer.js",
         "libraries" : [
-            "IMSGlobal/jquery_2_1_1",
             "./runtime/js/renderer.js"
         ],
         "stylesheets" : [
@@ -64,11 +63,9 @@
         	"./creator/js/markup.js",
         	"./creator/js/states.js",
         	"./creator/js/Widget.js",
-        	"./creator/widget/states/Answer.js",
-        	"./creator/widget/states/Correct.js",
-            "./creator/widget/states/Question.js"      
+        	"./creator/js/states/Answer.js",
+        	"./creator/js/states/Correct.js",
+            "./creator/js/states/Question.js"      
         ]
-        
   	}
-
 }

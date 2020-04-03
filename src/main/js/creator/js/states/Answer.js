@@ -1,5 +1,4 @@
 define(
-	'numworxPCIplayer/creator/widget/states/Answer',
 [
     'taoQtiItem/qtiCreator/widgets/states/factory',
     'taoQtiItem/qtiCreator/widgets/interactions/states/Answer',
