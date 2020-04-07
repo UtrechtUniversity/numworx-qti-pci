@@ -7,7 +7,7 @@
 	</parent>
   <groupId>nl.numworx.pciplayer</groupId>
   <artifactId>numworxPCIplayer</artifactId>
-  <version>0.0.4</version>
+  <version>0.0.5</version>
   <packaging>pom</packaging>
   <name>Numworx PCI player</name>
   <description>player for TAO PCI</description>
@@ -25,6 +25,23 @@
     	</resource>   
     </resources>
   	<plugins>
+     <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>parse-version</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>parse-version</goal>
+            </goals>
+            <configuration>
+            	<propertyPrefix>version</propertyPrefix>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>    
   	    <plugin>
   	    	<artifactId>maven-resources-plugin</artifactId>
   	    	<version>3.1.0</version>

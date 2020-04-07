@@ -3,7 +3,7 @@
     "label": "Numworx player",
     "short": "Numworx",
     "description": "${project.description}",
-    "version": "${project.version}-${tao.version}",
+    "version": "${version.majorVersion}.${version.minorVersion}.${version.incrementalVersion}-${tao.version}",
     "author": "Wim van Velthoven",
     "email": "w.p.g.vanvelthoven@uu.nl",
     "tags": [
@@ -15,6 +15,9 @@
     },
    "runtime" : {
         "hook" : "./runtime/js/pciplayer.js",
+        "libraries" : [
+            "./runtime/js/renderer.js"
+        ],
         "stylesheets" : [
             "./runtime/css/pciplayer.css"
         ],
@@ -51,18 +54,18 @@
         	"./runtime/assets/WebLogo3dGWT.html",
         	"./runtime/assets/WebLogoGWT.html",    	
         	"./runtime/assets/deploy.js"
-        ],
-        "src" : [
-            "./runtime/js/pciplayer.js"
         ]
-    },
+   	},
     "creator" : {
         "icon": "./creator/img/numworx.svg",
         "hook": "./pciCreator.js",
-        "src" : [
-            "./pciCreator.js"
-         ]
-        
-    }
-
+        "libraries": [
+        	"./creator/js/markup.js",
+        	"./creator/js/states.js",
+        	"./creator/js/Widget.js",
+        	"./creator/js/states/Answer.js",
+        	"./creator/js/states/Correct.js",
+            "./creator/js/states/Question.js"      
+        ]
+  	}
 }
