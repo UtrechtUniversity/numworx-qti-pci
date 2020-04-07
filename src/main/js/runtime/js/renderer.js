@@ -10,11 +10,11 @@ function($){
     		var $dom = $(dom)
     		var $element = $dom.find("iframe");
     		$element.attr("src", assetManager.resolve(
-    				"numworxPCIplayer/runtime/assets/outer.html?s=" + config.sco +
-    				"&e=" + config.engine +
-    				"&l=" + config.locale +
-    				"&c=" + config.css +
-    				"&m=" + config.cas))
+    				"numworxPCIplayer/runtime/assets/outer.html?s=" + encodeURIComponent(config.sco) +
+    				"&e=" + encodeURIComponent(config.engine) +
+    				"&l=" + encodeURIComponent(config.locale) +
+    				"&c=" + encodeURIComponent(config.css) +
+    				"&m=" + encodeURIComponent(config.cas) ))
     		$element.attr("width", config.width)
     		$element.attr("height", config.height)
     		return $element;

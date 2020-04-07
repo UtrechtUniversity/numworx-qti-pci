@@ -36,8 +36,8 @@ define(
 			            	'sco': "https://app.dwo.nl/dwo/rest/public/scoData/getJSONLaunchDataBytes?scoId=674042",
 			            	'width': 400,
 			            	'height': 400,
-			            	'cas': "https://app.dwo.nl/ideas/IdeasServlet",
-			            	'css': "https://app.dwo.nl/dwo/rest/public/scoData/get/674042/style.css",
+			            	'cas': "",
+			            	'css': "",
 			            	'engine': "https://cdn.dwo.nl/apps/",
 			            	'locale': 'fr'
 			            };

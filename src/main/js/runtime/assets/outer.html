@@ -22,12 +22,13 @@ body {
 <script type="text/javascript">
 
 	var deploy = "//cdn.dwo.nl/apps/"
-	var casServer = "https://app.dwo.nl/ideas/IdeasServlet"
-	var css = "https://app.dwo.nl/dwo/rest/public/scoData/get/674042/style.css"
-	var locale = "en"
+	var casServer = ""
+	var css = ""
+	var locale = "fr"
 
 	var API_1484_11 = {
 			state: { },
+			log: [], 
 			Initialize: function(dummy) { return "true"},
 			GetLastError: function() { return "0"},
 			GetValue: function(key) {
@@ -41,6 +42,12 @@ body {
 				for (key in object) {
 					this.SetValue(key, object[key]);
 				}
+			},
+			GetLog: function() {
+				return this.log;
+			},
+			Log: function( event) {
+				this.log.push(event)
 			}
 	}
 	
@@ -72,29 +79,30 @@ body {
 		var sco = location.search.substring(3);
 		var i = sco.indexOf("&");
 		if (i > 0) sco = sco.substring(0,i)
+		sco = decodeURIComponent(sco)
 // engine
 		i = location.search.indexOf("&e=");
 		if (i > 0) {
 			var e = location.search.substring(i+3)
 			i = e.indexOf("&");
 			if (i > 0) e = e.substring(0,i)
-			deploy = e;
+			deploy = decodeURIComponent(e);
 		}
 // css = c
 		i = location.search.indexOf("&c=");
 		if (i > 0) {
 			var e = location.search.substring(i+3)
 			i = e.indexOf("&");
-			if (i > 0) e = e.substring(0,i)
-			css = e;
+			if (i >= 0) e = e.substring(0,i)
+			css = decodeURIComponent(e);
 		}
 // casServer = m
 		i = location.search.indexOf("&m=");
 		if (i > 0) {
 			var e = location.search.substring(i+3)
 			i = e.indexOf("&");
-			if (i > 0) e = e.substring(0,i)
-			casServer = e;
+			if (i >= 0) e = e.substring(0,i)
+			casServer = decodeURIComponent(e);
 		}
 // locale  = l 
 		i = location.search.indexOf("&l=");
@@ -102,7 +110,7 @@ body {
 			var e = location.search.substring(i+3)
 			i = e.indexOf("&");
 			if (i > 0) e = e.substring(0,i)
-			locale = e;
+			locale = decodeURIComponent(e);
 		}		
 		launch_data(sco)
 	}

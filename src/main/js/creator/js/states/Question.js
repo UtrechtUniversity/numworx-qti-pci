@@ -55,7 +55,7 @@ define(
         	sco    = interaction.prop('sco') || "",
         	css    = interaction.prop('css') || "",
         	engine = interaction.prop('engine') || "https://cdn.dwo.nl/apps/",
-        	cas    = interaction.prop('cas') || "https://app.dwo.nl/ideas/IdeasServlet";
+        	cas    = interaction.prop('cas') || "";
     	
     	
     	

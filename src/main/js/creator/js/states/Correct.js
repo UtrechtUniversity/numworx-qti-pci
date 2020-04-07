@@ -11,9 +11,9 @@ define(
         var interaction = widget.element;
         var responseDeclaration = interaction.getResponseDeclaration();
                 
-// set initial and only correct response: 100
+// set initial and only correct response: { ... , "succes": true, ... }
         var correctResponse = [];    
-        correctResponse.push(100);
+        correctResponse.push('{ "success": true }');
         responseDeclaration.setCorrect(correctResponse);
 
     }, function(){

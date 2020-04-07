@@ -44,6 +44,10 @@ define(
     	        	return this.state[key] || "";
     	        },
     	        
+    	        GetLog: function() {
+    	        	return []; 
+    	        },
+    	        
     	        /**
     	         * Programmatically set the response following the json schema described in
     	         * http://www.imsglobal.org/assessment/pciv1p0cf/imsPCIv1p0cf.html#_Toc353965343
@@ -63,8 +67,12 @@ define(
     	         */
     	        getResponse : function getResponse() {
 
-    	        	var value = parseInt("0" + this.api().GetValue("cmi.score.raw"));
-    	            return {'base' : {'integer' : value}};
+    	        	var score = parseInt("0" + this.api().GetValue("cmi.score.raw"));
+    	        	var success = score >= 100;
+    	        	var log = this.api().GetLog();
+    	        	var response = { "success": success, "score": score, "log": log };
+    	        	var value = JSON.stringify(response);
+    	            return {'base' : {'string' : value}};
     	        },
     	        /**
     	         * Remove the current response set in the interaction
