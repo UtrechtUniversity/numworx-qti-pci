@@ -37,9 +37,9 @@ define(
 //    		`<label>Width: <input name='width' value='${o.width}' ><label></p>` +
     		`<p><label>Height: <input name='height' value='${o.height}' ><label></p>` +
     		`<p><label>Activity: <input name='sco' value='${o.sco}' ><label></p>` +
-    		`<p><label>Style: <input name='css' value='${o.css}' ><label></p>` +
+//   		`<p><label>Style: <input name='css' value='${o.css}' ><label></p>` +
     		`<p><label>Engine: <input name='engine' value='${o.engine}' ><label></p>` +
-    		`<p><label>CAS: <input name='cas' value='${o.cas}' ><label></p>` +
+//   		`<p><label>CAS: <input name='cas' value='${o.cas}' ><label></p>` +
     		`<p><label>Locale: <input name='locale' value='${o.locale}' ><label></p>` +
     		"</div>"
     		;   		
