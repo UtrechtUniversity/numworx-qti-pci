@@ -102,6 +102,10 @@ define(
     	        setSerializedState : function(state) {
     	        	if (state['cmi.suspend_data'])
     	        		this.api().SetValue("cmi.suspend_data", state['cmi.suspend_state']);
+    	        	if (state['cmi.total_time'])
+    	        		this.api().SetValue("cmi.total_time", state['cmi.total_time']);
+    	        	if (state['cmi.suspend_data'])
+    	        		this.api().SetValue("cmi.location", state['cmi.location']);
     	        },
 
     	        /**
@@ -114,7 +118,11 @@ define(
     	        getSerializedState : function() {
     	            return {
     	            	"cmi.suspend_data":
-    	            	this.api().GetValue("cmi.suspend_data")
+    	            		this.api().GetValue("cmi.suspend_data"),
+    	            	"cmi.location":
+    	            		this.api().GetValue("cmi.location"),
+    	            	"cmi.total_time":
+    	            		this.api().GetValue("cmi.total_time")
     	            }
     	        }
     	    };

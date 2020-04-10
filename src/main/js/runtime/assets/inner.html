@@ -19,6 +19,7 @@
 		}
 
     	function logAction(jso) {
+    		delete jso.actor
 			getAPIHandle().Log(jso)
 		}
     </script>
