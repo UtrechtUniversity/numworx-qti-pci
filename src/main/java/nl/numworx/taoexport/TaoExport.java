@@ -4,25 +4,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-
-import org.osgi.util.promise.Promise;
-import org.osgi.util.promise.Promises;
 
 import fi.dwo.commons.persistence.Dwo2ExceptionJavaTranslator;
 import fi.dwo.commons.persistence.MySQLPersistenceId;
 import fi.dwo.commons.persistence.entities.PersistentCourse;
 import fi.dwo.commons.persistence.entities.PersistentDwoProfile;
-import nl.uu.fi.dwo.lms.jclient.lib.rest.managers.PublicCourseManager;
 import nl.uu.fi.dwo.lms.jclient.lib.rest.managers.PublicScoContextManager;
 import nl.uu.fi.dwo.lms.jclient.lib.rest.transport.RestAuthenticator;
 import nl.uu.fi.dwo.lms.jclient.lib.rest.transport.StoredRestManager;
@@ -30,7 +20,6 @@ import nl.uu.fi.dwo.rest.dom.entities.DomContext;
 import nl.uu.fi.dwo.rest.dom.entities.DomCourse;
 import nl.uu.fi.dwo.rest.dom.entities.DomDwoProfile;
 import nl.uu.fi.dwo.rest.dom.entities.DomScoContext;
-import nl.uu.fi.dwo.rest.exceptions.Dwo2Exception;
 import nl.uu.fi.dwo.rest.persistence.PersistenceId;
 import nl.uu.fi.dwo.rest.util.Dwo2ExceptionTranslator;
 
@@ -70,6 +59,12 @@ public class TaoExport {
         toCSS(id, zip);
         zip.closeEntry();
     }
+// add htacces    
+    ZipEntry entry = new ZipEntry(".htaccess");
+    zip.putNextEntry(entry);
+    toResource("/htaccess",  zip);
+    zip.closeEntry();
+
     zip.close();
   }
  
@@ -85,6 +80,10 @@ public class TaoExport {
     copy(rest, out);
   }
 
+  private static void toResource(String resource, OutputStream out) throws IOException {
+    URL u = TaoExport.class.getResource(resource);
+    copy(u, out);
+  }
 
   private static void copy(URL rest, OutputStream out) throws IOException {
     byte[] buffer = new byte[4*4096];
