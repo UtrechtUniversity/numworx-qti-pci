@@ -11,9 +11,10 @@ define(
         var interaction = widget.element;
         var responseDeclaration = interaction.getResponseDeclaration();
                 
-// set initial and only correct response: 100
+// set initial and only correct response: { ... , "succes": true, ... }
+// responseProcessing should use <patternMatch pattern='{"success":true,"score":.*}' >
         var correctResponse = [];    
-        correctResponse.push(100);
+        correctResponse.push('{"success":true,"score":100,"log":[]}');
         responseDeclaration.setCorrect(correctResponse);
 
     }, function(){

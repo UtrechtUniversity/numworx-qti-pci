@@ -44,6 +44,10 @@ define(
     	        	return this.state[key] || "";
     	        },
     	        
+    	        GetLog: function() {
+    	        	return []; 
+    	        },
+    	        
     	        /**
     	         * Programmatically set the response following the json schema described in
     	         * http://www.imsglobal.org/assessment/pciv1p0cf/imsPCIv1p0cf.html#_Toc353965343
@@ -63,8 +67,12 @@ define(
     	         */
     	        getResponse : function getResponse() {
 
-    	        	var value = parseInt("0" + this.api().GetValue("cmi.score.raw"));
-    	            return {'base' : {'integer' : value}};
+    	        	var score = parseInt("0" + this.api().GetValue("cmi.score.raw"));
+    	        	var success = score >= 100;
+    	        	var log = this.api().GetLog();
+    	        	var response = { "success": success, "score": score, "log": log };
+    	        	var value = JSON.stringify(response);
+    	            return {'base' : {'string' : value}};
     	        },
     	        /**
     	         * Remove the current response set in the interaction
@@ -94,6 +102,10 @@ define(
     	        setSerializedState : function(state) {
     	        	if (state['cmi.suspend_data'])
     	        		this.api().SetValue("cmi.suspend_data", state['cmi.suspend_state']);
+    	        	if (state['cmi.total_time'])
+    	        		this.api().SetValue("cmi.total_time", state['cmi.total_time']);
+    	        	if (state['cmi.suspend_data'])
+    	        		this.api().SetValue("cmi.location", state['cmi.location']);
     	        },
 
     	        /**
@@ -106,7 +118,11 @@ define(
     	        getSerializedState : function() {
     	            return {
     	            	"cmi.suspend_data":
-    	            	this.api().GetValue("cmi.suspend_data")
+    	            		this.api().GetValue("cmi.suspend_data"),
+    	            	"cmi.location":
+    	            		this.api().GetValue("cmi.location"),
+    	            	"cmi.total_time":
+    	            		this.api().GetValue("cmi.total_time")
     	            }
     	        }
     	    };
