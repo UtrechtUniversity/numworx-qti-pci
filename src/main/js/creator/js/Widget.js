@@ -23,7 +23,7 @@ function(Widget, states){
         if (! responseDeclaration.getCorrect()) {       
 // set initial and only correct response: 100, only if not set already.
         	var correctResponse = [];    
-        	correctResponse.push('{ "success": true }');
+        	correctResponse.push('{"success":true,"score":100,"log":[]}');
         	responseDeclaration.setCorrect(correctResponse);
         }
     };

@@ -12,8 +12,9 @@ define(
         var responseDeclaration = interaction.getResponseDeclaration();
                 
 // set initial and only correct response: { ... , "succes": true, ... }
+// responseProcessing should use <patternMatch pattern='{"success":true,"score":.*}' >
         var correctResponse = [];    
-        correctResponse.push('{ "success": true }');
+        correctResponse.push('{"success":true,"score":100,"log":[]}');
         responseDeclaration.setCorrect(correctResponse);
 
     }, function(){
