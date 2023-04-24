@@ -3,6 +3,8 @@
   <head>
 	<meta charset="UTF-8">
 	<title>Inner HTML</title>
+    	<meta name="gwt:property" content="locale=fr" >
+
 	<script type="text/javascript">
 /**
  * script en css loader
@@ -11,6 +13,7 @@
 var deploy = window.parent.deploy
 var casServer = window.parent.casServer
 var dwo_env = "app"
+var RESPONSIVE = true
 
 function script(name) {
         var elem = document.createElement('script');
@@ -31,8 +34,6 @@ function frameFactory(frame, src) {
         var i = src.indexOf("?");
         var j = src.lastIndexOf("/",i);
 	var key = src.substring(j,i);
-	console.log(src);
-	console.log(key);
 	var heks = window.parent.frameMap[key];
 	frame.srcdoc = heks;
 }

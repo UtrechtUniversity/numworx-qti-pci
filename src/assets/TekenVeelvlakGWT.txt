@@ -29,11 +29,11 @@ function css(name) {
 }
 </script>
 
-    <script>css("HeksGWT.css")</script>
+    <script>css("TekenVeelvlakGWT.css")</script>
 
-    <title>HeksGWT</title>
+    <title>TekenVeelvlakGWT</title>
     
-    <script>script("heksgwt/heksgwt.nocache.js")</script>
+    <script>script("tekenveelvlakgwt/tekenveelvlakgwt.nocache.js")</script>
   </head>
 
   <body>
