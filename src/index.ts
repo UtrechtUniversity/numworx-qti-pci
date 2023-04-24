@@ -55,7 +55,7 @@ class Pci implements IMSpci<PropTypes>, TAOpci {
     this.shadowdom = dom;
     this.state = state||"{}";
     this.render();
-    this.frame = this.shadowdom.firstElementChild.firstElementChild;
+    this.frame = this.shadowdom.firstElementChild.firstElementChild as HTMLIFrameElement;
     this.frame.srcdoc = outer;
     var self = this
     this.frame.addEventListener('load', function(ev) { 
