@@ -1,6 +1,6 @@
 {
-  "sco" : "https://teunaz.dwo.nl/dwo/rest/public/scoData/getJSONLaunchDataBytes?scoId=371378",
-  "engine" : "http://localhost:8082/apps/",
+  "sco" : "https://test.dwo.nl/dwo/rest/public/scoData/getJSONLaunchDataBytes?scoId=675127",
+  "engine" : "https://cdn-dev.dwo.nl/apps/",
   "cas" : "",
   "css" : "",
   "locale" : "fr",
