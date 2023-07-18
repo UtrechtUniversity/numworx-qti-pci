@@ -46,6 +46,7 @@ public class TaoExport {
     RestAuthenticator auth = StoredRestManager.getInstance().getAuthenticator();
     auth.setServerUrlPath(server);
     auth.setContext(new DomContext());
+    System.err.println("user = " + username + " pass = " + password); 
     StoredRestManager.getInstance().setBasicAuthString(username, MD5.getHashString(password), "");
     
     DomLoginContext kc = SecureUserAccountManager.getLoginContext();
