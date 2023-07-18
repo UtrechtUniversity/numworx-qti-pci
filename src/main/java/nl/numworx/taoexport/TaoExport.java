@@ -9,16 +9,22 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.security.auth.login.LoginContext;
+
 import fi.dwo.commons.persistence.Dwo2ExceptionJavaTranslator;
 import fi.dwo.commons.persistence.MySQLPersistenceId;
 import fi.dwo.commons.persistence.entities.PersistentCourse;
 import fi.dwo.commons.persistence.entities.PersistentDwoProfile;
+import fi.dwo.commons.system.MD5;
 import nl.uu.fi.dwo.lms.jclient.lib.rest.managers.PublicScoContextManager;
+import nl.uu.fi.dwo.lms.jclient.lib.rest.managers.SecureUserAccountManager;
 import nl.uu.fi.dwo.lms.jclient.lib.rest.transport.RestAuthenticator;
 import nl.uu.fi.dwo.lms.jclient.lib.rest.transport.StoredRestManager;
 import nl.uu.fi.dwo.rest.dom.entities.DomContext;
 import nl.uu.fi.dwo.rest.dom.entities.DomCourse;
 import nl.uu.fi.dwo.rest.dom.entities.DomDwoProfile;
+import nl.uu.fi.dwo.rest.dom.entities.DomHasRole;
+import nl.uu.fi.dwo.rest.dom.entities.DomLoginContext;
 import nl.uu.fi.dwo.rest.dom.entities.DomScoContext;
 import nl.uu.fi.dwo.rest.persistence.PersistenceId;
 import nl.uu.fi.dwo.rest.util.Dwo2ExceptionTranslator;
@@ -26,6 +32,10 @@ import nl.uu.fi.dwo.rest.util.Dwo2ExceptionTranslator;
 public class TaoExport {
 
   public static void main(String[] args) throws Exception {
+	  
+	String username = System.getProperty("taoexport.user", "root");
+	String password = System.getProperty("taoexport.pass", "test");
+	
     Dwo2ExceptionTranslator.setTranslator(new Dwo2ExceptionJavaTranslator());
 
     Long courseId = 203030L;
@@ -36,6 +46,11 @@ public class TaoExport {
     RestAuthenticator auth = StoredRestManager.getInstance().getAuthenticator();
     auth.setServerUrlPath(server);
     auth.setContext(new DomContext());
+    StoredRestManager.getInstance().setBasicAuthString(username, MD5.getHashString(password), "");
+    
+    DomLoginContext kc = SecureUserAccountManager.getLoginContext();
+    auth.getContext().setDomHasRole(new DomHasRole());
+    auth.getContext().getDomHasRole().setId(kc.getHasRoleId());
     
     PersistenceId cpid = PersistentCourse.buildPersistenceId(courseId);
     PersistenceId ppid = PersistentDwoProfile.buildPersistenceId(profileId);
