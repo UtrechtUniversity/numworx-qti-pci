@@ -6,7 +6,6 @@
   <parent>
   	<groupId>nl.uu.fi.dwo</groupId>
   	<version>2.5.19</version>
-  	<relativePath>../DWO</relativePath>
   	<artifactId>DWO</artifactId>
   </parent>
   <dependencies>
@@ -50,4 +49,8 @@
     
     </plugins>
   </build>
+  <properties>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 </project>
