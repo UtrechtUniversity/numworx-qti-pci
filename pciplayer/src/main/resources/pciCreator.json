@@ -1,0 +1,71 @@
+{
+    "typeIdentifier": "numworxPCIplayer",
+    "label": "Numworx player",
+    "short": "Numworx",
+    "description": "${project.description}",
+    "version": "${version.majorVersion}.${version.minorVersion}.${version.incrementalVersion}-${tao.version}",
+    "author": "Wim van Velthoven",
+    "email": "w.p.g.vanvelthoven@uu.nl",
+    "tags": [
+        "math"
+    ],
+     "response": {
+        "baseType": "string",
+        "cardinality": "single"
+    },
+   "runtime" : {
+        "hook" : "./runtime/js/pciplayer.js",
+        "libraries" : [
+            "./runtime/js/renderer.js"
+        ],
+        "stylesheets" : [
+            "./runtime/css/pciplayer.css"
+        ],
+        "mediaFiles" : [
+        	"./runtime/assets/inner.html",
+        	"./runtime/assets/outer.html",
+        	"./runtime/assets/AlgebraExprGWT.html",
+        	"./runtime/assets/AlgebraPijlenGWT.html",
+        	"./runtime/assets/BalansFruitGWT.html",
+        	"./runtime/assets/BinomVerdGWT.html",
+        	"./runtime/assets/CalculatorGWT.html",
+        	"./runtime/assets/DoorzienGWT.html",
+        	"./runtime/assets/DraaibankGWT.html",
+        	"./runtime/assets/GeoDefinerGWT.html",
+        	"./runtime/assets/GeoGebra.html",
+        	"./runtime/assets/GeomAlgGWT.html",
+        	"./runtime/assets/Grafiek3DGWT.html",
+        	"./runtime/assets/GraphToolGWT.html",
+        	"./runtime/assets/HeksGWT.html",
+        	"./runtime/assets/IVMdrawGWT.html",
+        	"./runtime/assets/KansbomenGWT.html",
+        	"./runtime/assets/KladjeGWT.html",
+        	"./runtime/assets/MozarchGWT.html",
+        	"./runtime/assets/NabouwenAanzichtenGWT.html",
+        	"./runtime/assets/NormVerdGWT.html",
+       		"./runtime/assets/SliderWidgetGWT.html",      	
+        	"./runtime/assets/StatistiekGWT.html",
+        	"./runtime/assets/StatSimGWT.html",
+        	"./runtime/assets/StippelPatronenGWT.html",
+        	"./runtime/assets/StroomDiagrammenGWT.html",
+        	"./runtime/assets/TegelsLeggenGWT.html",
+        	"./runtime/assets/TekenVeelvlakGWT.html",
+        	"./runtime/assets/VerknippenGWT.html",
+        	"./runtime/assets/WebLogo3dGWT.html",
+        	"./runtime/assets/WebLogoGWT.html",    	
+        	"./runtime/assets/deploy.js"
+        ]
+   	},
+    "creator" : {
+        "icon": "./creator/img/numworx.svg",
+        "hook": "./pciCreator.js",
+        "libraries": [
+        	"./creator/js/markup.js",
+        	"./creator/js/states.js",
+        	"./creator/js/Widget.js",
+        	"./creator/js/states/Answer.js",
+        	"./creator/js/states/Correct.js",
+            "./creator/js/states/Question.js"      
+        ]
+  	}
+}

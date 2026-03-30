@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Outer HTML</title>
+<style>
+iframe.innerframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+body {
+	position: absolute;
+	margin: 0px;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+</style>
+<script type="text/javascript">
+
+	var deploy = "//cdn.dwo.nl/apps/"
+	var casServer = ""
+	var css = ""
+	var locale = "fr"
+
+	var API_1484_11 = {
+			state: { },
+			log: [], 
+			Initialize: function(dummy) { return "true"},
+			GetLastError: function() { return "0"},
+			GetValue: function(key) {
+				return this.state[key];
+			},
+			SetValue: function(key, value) {
+				this.state[key] = value;
+				return "true";
+			},
+			SetValues: function(object) {
+				for (key in object) {
+					this.SetValue(key, object[key]);
+				}
+			},
+			GetLog: function() {
+				return this.log;
+			},
+			Log: function( event) {
+				this.log.push(event)
+			}
+	}
+	
+	
+	API_1484_11.SetValue("cmi.score.raw", "0")
+
+	function launch_data(sco) {
+		var url = sco
+// 1. Create a new XMLHttpRequest object
+		var xhr = new XMLHttpRequest();
+// 2. Configure it: GET-request for the URL
+		xhr.open('GET', url);
+// 3. Send the request over the network
+		xhr.send();
+// 4. This will be called after the response is received
+		xhr.onload = function() {
+			  if (xhr.status != 200) { // analyze HTTP status of the response
+			    console.log(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+			  } else { // show the result
+			    console.log(`Done, got ${xhr.response.length} bytes`); // responseText is the server
+				API_1484_11.SetValue("cmi.launch_data", xhr.response);
+				var element = document.getElementsByTagName("iframe")[0];
+				element.setAttribute("src", "inner.html?responsive=true&locale="+locale+"#cmi.launch_data:00000000");
+		  }
+			};		
+	}
+		
+	function load() {
+		var sco = location.search.substring(3);
+		var i = sco.indexOf("&");
+		if (i > 0) sco = sco.substring(0,i)
+		sco = decodeURIComponent(sco)
+// engine
+		i = location.search.indexOf("&e=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i > 0) e = e.substring(0,i)
+			deploy = decodeURIComponent(e);
+		}
+// css = c
+		i = location.search.indexOf("&c=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i >= 0) e = e.substring(0,i)
+			css = decodeURIComponent(e);
+		}
+// casServer = m
+		i = location.search.indexOf("&m=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i >= 0) e = e.substring(0,i)
+			casServer = decodeURIComponent(e);
+		}
+// locale  = l 
+		i = location.search.indexOf("&l=");
+		if (i > 0) {
+			var e = location.search.substring(i+3)
+			i = e.indexOf("&");
+			if (i > 0) e = e.substring(0,i)
+			locale = decodeURIComponent(e);
+		}		
+		launch_data(sco)
+	}
+</script>
+
+</head>
+<body onload ="load()">
+<iframe src="" class='innerframe'></iframe>
+</body>
+</html>

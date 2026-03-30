@@ -1,0 +1,15 @@
+.qti-customInteraction
+div.numworxPCIplayer {
+	background-color: transparent;
+	position: relative;
+	padding: 0px;
+}
+
+div.numworxPCIplayer iframe {
+	width: 100%;
+	bottom: 0px;
+}
+
+div.numworxPCIplayer iframe.sleep {
+	pointer-events: none;
+}
