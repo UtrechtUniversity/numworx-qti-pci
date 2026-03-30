@@ -1,0 +1,76 @@
+import { Configuration, IMSpci } from "@citolab/tspci";
+import { TAOpci } from "@citolab/tspci-tao";
+import * as ctx from "qtiCustomInteractionContext";
+import configProps from "./config.json";
+type PropTypes = typeof configProps;
+
+class Pci implements IMSpci<never>, TAOpci {
+  typeIdentifier = "numworxIMSPCIplayer";
+  shadowdom: HTMLElement;
+  public config: Configuration<PropTypes>;
+  frame: HTMLElement;
+  state: string;
+  
+  constructor() {
+    ctx && ctx.register(this); 
+  }
+  
+  on: (value: any) => void;
+  off: () => void;
+  
+  resetResponse = () => {
+    // RESET RESPONSE HERE
+  };
+  setResponse = (response: any) => {
+    // SET RESPONSE HERE, USE TO SHOW THE CORRECT ANSWER GIVEN BY THE ITEM-AUTHOR IN TAO CONSTRUCTION
+  };
+  
+  trigger = (event: string, value: any) => {
+    this.config.properties[event] = value;
+    this.render();
+  };
+
+  oncompleted = () => {
+    this.shadowdom.innerHTML = ''
+  };
+
+
+  api = () => {
+     try {
+    	var a =  this.frame.contentWindow.API_1484_11
+       	if (a) return a;
+     } catch(e) { }
+       	return this;
+  };
+
+  getInstance = (dom: HTMLElement, config: Configuration<any>, state: string) => {
+    config.properties = { ...configProps, ...config.properties }; // merge current props with incoming
+    this.config = config;
+    this.shadowdom = dom;
+    this.state = state;
+    this.render();
+    this.frame = this.shadowdom.firstElementChild.firstElementChild;
+    var self = this
+    this.frame.addEventListener('load', function(ev) { self.api().SetValues(self.state)} ) ;
+    config.onready(this);
+  };
+
+  private resolve = (s:string) => { return "http://localhost:8082/" + s; }
+  private render = () => {
+    var assetManager = this; // .config.assetManager;
+    var config = this.config.properties;
+    var src = assetManager.resolve("numworxIMSPCIplayer/runtime/assets/outer.html") + "?s=" + encodeURIComponent(config.sco) +
+    				"&e=" + encodeURIComponent(config.engine) +
+    				"&l=" + encodeURIComponent(config.locale) +
+    				"&c=" + encodeURIComponent(config.css) +
+    				"&m=" + encodeURIComponent(config.cas); 
+
+    this.shadowdom.innerHTML = `<div class="numworxIMSPCIplayer"><iframe width='${config.width}' height='${config.height}' src='${src}'></iframe></div>`;
+  };
+
+  getResponse = () => { return null };
+
+  getState = () => null;
+}
+
+export default new Pci();

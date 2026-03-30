@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="gwt:property" content="locale=fr" >
+	<script type="text/javascript" language="javascript" >
+/**
+ * script en css loader
+ */
+
+var deploy = window.parent.deploy
+var casServer = window.parent.casServer
+var dwo_env = "app"
+
+function script(name) {
+        var elem = document.createElement('script');
+        elem.src = deploy + name;
+        elem.async = false;
+        document.head.appendChild(elem);
+}
+
+function css(name) {
+        var elem = document.createElement('link');
+        elem.type='text/css';
+        elem.rel = 'stylesheet';
+        elem.href = deploy + name;
+        document.head.appendChild(elem);
+}
+</script>
+
+    <script>css("NabouwenAanzichtenGWT.css")</script>
+
+    <title>NabouwenAanzichtenGWT</title>
+    
+    <script>script("nabouwenaanzichtengwt/nabouwenaanzichtengwt.nocache.js")</script>
+  </head>
+  <body style='margin: 0'></body>
+</html>

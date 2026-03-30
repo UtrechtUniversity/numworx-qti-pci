@@ -1,0 +1,9 @@
+{
+  "sco" : "https://test.dwo.nl/dwo/rest/public/scoData/getJSONLaunchDataBytes?scoId=675127",
+  "engine" : "https://cdn-dev.dwo.nl/apps/",
+  "cas" : "",
+  "css" : "",
+  "locale" : "fr",
+  "width": "800",
+  "height": "600"
+}

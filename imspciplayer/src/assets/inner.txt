@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>Inner HTML</title>
+    	<meta name="gwt:property" content="locale=fr" >
+
+	<script type="text/javascript">
+/**
+ * script en css loader
+ */
+
+var deploy = window.parent.deploy
+var casServer = window.parent.casServer
+var dwo_env = "app"
+var RESPONSIVE = true
+
+function script(name) {
+        var elem = document.createElement('script');
+        elem.src = deploy + name;
+        elem.async = false;
+        document.head.appendChild(elem);
+}
+
+function css(name) {
+        var elem = document.createElement('link');
+        elem.type='text/css';
+        elem.rel = 'stylesheet';
+        elem.href = deploy + name;
+        document.head.appendChild(elem);
+}
+
+function frameFactory(frame, src) {
+        var i = src.indexOf("?");
+        var j = src.lastIndexOf("/",i);
+	var key = src.substring(j,i);
+	var heks = window.parent.frameMap[key];
+	frame.srcdoc = heks;
+}
+
+</script>
+    <title>Numworx PCI player</title>
+    <script>css("DWOplayer.css")</script>
+    <script>script("scripts/SCORM_2004_APIWrapper.js")</script>
+    <script>script("DWOplayer/DWOplayer.nocache.js")</script>
+    <script>
+		
+    	if (window.parent.css != "") {
+    		var elem = document.createElement('link');
+			elem.type='text/css';
+			elem.rel = 'stylesheet';
+			elem.href = window.parent.css
+			document.head.appendChild(elem);
+		}
+
+    	function logAction(jso) {
+    		delete jso.actor
+			getAPIHandle().Log(jso)
+		}
+	window.location.hash = "cmi.launch_data:00000000"
+    </script>
+  </head>
+  <body id="main" style="overflow: hidden">
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+  </body>
+</html>
