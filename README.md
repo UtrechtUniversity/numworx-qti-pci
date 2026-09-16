@@ -6,7 +6,7 @@ In this repository you will find software for running Numworx as a PCI component
 
 ## Prerequisites
 
-The software makes use of the artifacts build by the [numworx-dwo-project](https://github.com/UtrechtUniversity/numworx-dwo-project] repository. 
+The software makes use of the artifacts build by the [numworx-dwo-project](https://github.com/UtrechtUniversity/numworx-dwo-project) repository. 
 
 ### Note
 
