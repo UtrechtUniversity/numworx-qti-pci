@@ -20,7 +20,7 @@ This software is rather old and not maintained. It uses very old versions of the
 The are 3 folders in this repository.
 * taoexport. Software to extract the activities from the Numworx platform
 * pciplayer. The older version TAO uses as PCI component.
-* imspciplayer. The newer QTI PCI component that modern TAO uses. It follows the IMS standard. It started as a fork of [tspci](https://github.com/Citolab/tspci/lib/tspci)
+* imspciplayer. The newer QTI PCI component that modern TAO uses. It follows the IMS standard. It started as a fork of [tspci](https://github.com/Citolab/tspci)
 
 ## Usage
 
